@@ -20,5 +20,13 @@
             }
             return $key;
         }
+        
+        public function isEmpty($var_name) {
+            if (!isset($var_name) or empty ($var_name)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
 ?>

@@ -1,4 +1,9 @@
 <?php
+    abstract class ParamType {
+        const GET = '_GET';
+        const POST = '_POST';
+    }
+
     function disp($cont, $is_pre = false) {
         if ($is_pre) {
             echo '<pre>' . $cont . '</pre><br />';
@@ -30,6 +35,20 @@
     }
     
     function setHtml($cont, $sp_num) {
-        echo genHtml($cont,$sp_num);
+        echo genHtml($cont, $sp_num);
+    }
+    
+    function getParam($param_name, $param_type = ParamType::GET) {
+        $param_val = '';
+        switch ($param_type) {
+            case ParamType::POST:
+                $param_val = htmlspecialchars($_POST[$param_name]);
+                break;
+            case ParamType::GET:
+                $param_val = htmlspecialchars($_GET[$param_name]);
+                break;
+            default:
+        }
+        return $param_val;
     }
 ?>
