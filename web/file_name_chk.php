@@ -1,6 +1,5 @@
 <?php
     include('../tpl/header.php');
-    include('../lib/html_common.inc');
     include('../lib/misc.inc');
     include('../lib/cls_file.php');
     
@@ -60,12 +59,26 @@
         
         // 取得未出現過的檔名
         $aFile_Name_Count = array();
+        $aValidate_Ext = array('php', 'inc');
         foreach ($aSearch_File_Name as $sTmp_Name) {
             $aTmp_List = get_name_count($sTmp_Name, $aSearch_File_Path);
-            if (count($aTmp_List) == 0) {
-                $aFile_Name_Count[] = $sTmp_Name;
+            // if (count($aTmp_List) == 0) {
+            if (true) {
+                list($sMain_Name, $sExt_Name) = explode('.', $sTmp_Name);
+                if (in_array($sExt_Name, $aValidate_Ext)) {
+                    $aFile_Name_Count[$sTmp_Name] = $aTmp_List;
+                }
             }
+            /* if (count($aTmp_List) > 0) {
+                // $aFile_Name_Count[$sTmp_Name] = $aTmp_List;
+                list($sMain_Name, $sExt_Name) = explode('.', $sTmp_Name);
+                if (in_array($sExt_Name, $aValidate_Ext)) {
+                    $aFile_Name_Count[] = $sTmp_Name;
+                    echo '<a href="https://ticket.ctbcbank.com/railway/' . $sTmp_Name . '">' . $sTmp_Name . '</a><br />';
+                }
+            } */
         }
+        // sort($aFile_Name_Count);
         echo '<pre>' . print_r($aFile_Name_Count, true) . '</pre>';
     } catch (Exception $e) {
         disp($e->getMessage());
