@@ -76,3 +76,8 @@ lazy_gen_160215055144/allpay_webatm/allpay_cart_ext.php
 lazy_gen_160215055144/allpay_webatm/allpay_webatm.php
 lazy_gen_160215055144/allpay_webatm/allpay_webatm.xml
 lazy_gen_160215055144/allpay_webatm/index.html
+shell/allpay2ecpay/file/sample/
+shell/allpay2ecpay/file/SDK/
+shell/bin_csv_transfer/file/
+shell/allpay2ecpay/file/
+shell/test.php
