@@ -90,7 +90,7 @@
         return $t_sum;
     }
     
-    $chk_dir_path = '../file/railway_chk/file';
+    $chk_dir_path = '../file/railway_chk';
     
     // 台鐵交易
     $nec_trd = array();
@@ -136,7 +136,7 @@
     foreach ($src_trd as $t_key => $t_val) {
         if (!isset($comp_trd[$t_key])) {
             $diff_count++;
-            disp($comp_desc . '缺少交易-' . '卡號:' . $t_key . ';金額:' . $t_val);
+            disp($comp_desc . '缺少交易-' . '卡號:' . $t_key . '; 金額:' . $t_val . '; 刷卡單號:');
             if ($t_val > 0) {
                 $diff_pay_total += $t_val;
             } else {

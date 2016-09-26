@@ -58,17 +58,17 @@
     // 正式測試環境網址
 	abstract class AllpayTestURL {
         const CVS_MAP = 'https://logistics.allpay.com.tw/Express/map';// 電子地圖(測試環境有問題，直接使用正式環境URL)
-		const SHIPPING_ORDER = 'http://logistics-stage.allpay.com.tw/Express/Create';// 物流訂單建立
-		const HOME_RETURN_ORDER = 'http://logistics-stage.allpay.com.tw/Express/ReturnHome';// 宅配逆物流訂單
-		const FAMILY_RETURN_ORDER = 'http://logistics-stage.allpay.com.tw/express/ReturnCVS';// 超商取貨逆物流訂單(全家超商B2C)
-		const FAMILY_RETURN_CHECK = 'http://logistics-stage.allpay.com.tw/Helper/LogisticsCheckAccoounts';// 全家逆物流核帳(全家超商B2C)
-		const UNIMART_UPDATE_LOGISTICS_INFO = 'http://logistics-stage.allpay.com.tw/Helper/UpdateShipmentInfo';// 統一修改物流資訊(全家超商B2C)
-		const UNIMART_UPDATE_STORE_INFO = 'http://logistics-stage.allpay.com.tw/Express/UpdateStoreInfo';// 更新門市(統一超商C2C)
-		const UNIMART_CANCEL_LOGISTICS_ORDER = 'http://logistics-stage.allpay.com.tw/Express/CancelC2COrder';// 取消訂單(統一超商C2C)
-		const QUERY_LOGISTICS_INFO = 'http://logistics-stage.allpay.com.tw/Helper/QueryLogisticsTradeInfo';// 物流訂單查詢
-		const PRINT_TRADE_DOC = 'http://logistics-stage.allpay.com.tw/helper/printTradeDocument';// 產生托運單(宅配)/一段標(超商取貨)
-		const PRINT_UNIMART_C2C_BILL = 'http://logistics-stage.allpay.com.tw/Express/PrintUniMartC2COrderInfo';// 列印繳款單(統一超商C2C)
-		const PRINT_FAMILY_C2C_BILL = 'http://logistics-stage.allpay.com.tw/Express/PrintFAMIC2COrderInfo';// 全家列印小白單(全家超商C2C)
+		const SHIPPING_ORDER = 'https://logistics-stage.allpay.com.tw/Express/Create';// 物流訂單建立
+		const HOME_RETURN_ORDER = 'https://logistics-stage.allpay.com.tw/Express/ReturnHome';// 宅配逆物流訂單
+		const FAMILY_RETURN_ORDER = 'https://logistics-stage.allpay.com.tw/express/ReturnCVS';// 超商取貨逆物流訂單(全家超商B2C)
+		const FAMILY_RETURN_CHECK = 'https://logistics-stage.allpay.com.tw/Helper/LogisticsCheckAccoounts';// 全家逆物流核帳(全家超商B2C)
+		const UNIMART_UPDATE_LOGISTICS_INFO = 'https://logistics-stage.allpay.com.tw/Helper/UpdateShipmentInfo';// 統一修改物流資訊(全家超商B2C)
+		const UNIMART_UPDATE_STORE_INFO = 'https://logistics-stage.allpay.com.tw/Express/UpdateStoreInfo';// 更新門市(統一超商C2C)
+		const UNIMART_CANCEL_LOGISTICS_ORDER = 'https://logistics-stage.allpay.com.tw/Express/CancelC2COrder';// 取消訂單(統一超商C2C)
+		const QUERY_LOGISTICS_INFO = 'https://logistics-stage.allpay.com.tw/Helper/QueryLogisticsTradeInfo';// 物流訂單查詢
+		const PRINT_TRADE_DOC = 'https://logistics-stage.allpay.com.tw/helper/printTradeDocument';// 產生托運單(宅配)/一段標(超商取貨)
+		const PRINT_UNIMART_C2C_BILL = 'https://logistics-stage.allpay.com.tw/Express/PrintUniMartC2COrderInfo';// 列印繳款單(統一超商C2C)
+		const PRINT_FAMILY_C2C_BILL = 'https://logistics-stage.allpay.com.tw/Express/PrintFAMIC2COrderInfo';// 全家列印小白單(全家超商C2C)
 	}
 	
     // 溫層

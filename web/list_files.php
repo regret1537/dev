@@ -27,7 +27,7 @@
         }        
         
         # 取得目錄檔案內容
-        $src_dir_path = $_SERVER["DOCUMENT_ROOT"] . 'dev/file/' . $dir_name;
+        $src_dir_path = $_SERVER["DOCUMENT_ROOT"] . '/dev/file/' . $dir_name;
         $scan_file_list = array();
         recurciveScan($src_dir_path);
         

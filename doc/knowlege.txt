@@ -33,3 +33,43 @@
  * @var    變數(物件成員變數)的形態或描述 (Example: @var Boolean)
  * @version   函數的版本 (Example: v1.3258c)
  */
+ ------------------------------------------------------------------------------------------------------------------------------------------------------
+ Magento
+	1. magento_1_9 key : 876285260d84918adaa5723f38cb3fe5
+	2. Disable the URL validate in installing
+		Quick solution:
+			Inspect "Base URL" input in firebug
+			Remove "validate-url" from the list of classes
+			Click "continue"
+	3. Install step
+		Install core
+		Login https://www.magentocommerce.com/magento-connect/ and search Traditional Chinese
+		Get the extention key
+		Login Magento backend > system > Magento Connect > Magento Connect Manager > Input the key to install
+ ------------------------------------------------------------------------------------------------------------------------------------------------------
+ reload php.ini on homestead in vagrant
+	1. Navigate to folder containing php.ini: $ cd /etc/php5/fpm
+
+	2. Grant read/write access: $ sudo chmod -R ugo+rw php.ini
+
+	3. Open php.ini: $ vim php.ini
+
+	4. Enter edit mode: $ i
+
+	5. Edit stuff
+
+	6. Exit edit mode: Press ESC
+
+	7. Save & close php.ini: $ :x!
+
+	7.1 OPTIONAL: Exit without saving: $ :q
+
+	8. Navigate to home (not sure if this is actually necessary): $ cd ~
+
+	9. Reload/Restart nginx: $ sudo nginx -s reload
+
+	10.1 Reload/Restart php: $ sudo service php5-fpm restart
+
+	10.2 If using PHP 7 then use $ sudo service php7.0-fpm restart (Thanks & Credit to Richard in comments).
+ ------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
