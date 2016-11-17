@@ -1,0 +1,188 @@
+<div style="text-align:center;">
+  <form id="ECPayForm" method="POST" action="https://logistics.ecpay.com.tw/Express/map" target="_self">
+    <input type="hidden" name="MerchantID" value="2000132" />
+    <input type="hidden" name="MerchantTradeNo" value="no20161017065128" />
+    <input type="hidden" name="LogisticsSubType" value="UNIMART" />
+    <input type="hidden" name="IsCollection" value="N" />
+    <input type="hidden" name="ServerReplyURL" value="http://www.sample.com.tw/ServerReplyURL.php" />
+    <input type="hidden" name="ExtraData" value="測試額外資訊" />
+    <input type="hidden" name="Device" value="0" />
+    <input type="hidden" name="LogisticsType" value="CVS" />
+    <input type="submit" id="__paymentButton" value="電子地圖(統一)" />
+  </form>
+</div>
+ECPay 統一電子地圖串接(CvsMap) 測試通過
+<div style="text-align:center;">
+  <form id="ECPayForm" method="POST" action="https://logistics.ecpay.com.tw/Express/map" target="_self">
+    <input type="hidden" name="MerchantID" value="2000132" />
+    <input type="hidden" name="MerchantTradeNo" value="no20161017065128" />
+    <input type="hidden" name="LogisticsSubType" value="FAMI" />
+    <input type="hidden" name="IsCollection" value="N" />
+    <input type="hidden" name="ServerReplyURL" value="http://www.sample.com.tw/ServerReplyURL.php" />
+    <input type="hidden" name="ExtraData" value="測試額外資訊" />
+    <input type="hidden" name="Device" value="0" />
+    <input type="hidden" name="LogisticsType" value="CVS" />
+    <input type="submit" id="__paymentButton" value="電子地圖(全家)" />
+  </form>
+</div>
+ECPay 全家電子地圖串接(CvsMap) 測試通過
+<div style="text-align:center;">
+  <form id="ECPayForm" method="POST" action="https://logistics-stage.ecpay.com.tw/Express/Create" target="_self">
+    <input type="hidden" name="MerchantID" value="2000132" />
+    <input type="hidden" name="MerchantTradeNo" value="no20161017065128" />
+    <input type="hidden" name="MerchantTradeDate" value="2016/10/17 06:51:28" />
+    <input type="hidden" name="LogisticsType" value="Home" />
+    <input type="hidden" name="LogisticsSubType" value="TCAT" />
+    <input type="hidden" name="GoodsAmount" value="1500" />
+    <input type="hidden" name="IsCollection" value="N" />
+    <input type="hidden" name="GoodsName" value="測試商品" />
+    <input type="hidden" name="SenderName" value="測試寄件者" />
+    <input type="hidden" name="SenderPhone" value="0226550115" />
+    <input type="hidden" name="SenderCellPhone" value="0911222333" />
+    <input type="hidden" name="ReceiverName" value="測試收件者" />
+    <input type="hidden" name="ReceiverPhone" value="0226550115" />
+    <input type="hidden" name="ReceiverCellPhone" value="0933222111" />
+    <input type="hidden" name="ReceiverEmail" value="test_emjhdAJr@test.com.tw" />
+    <input type="hidden" name="TradeDesc" value="測試交易敘述" />
+    <input type="hidden" name="ServerReplyURL" value="http://www.sample.com.tw/ServerReplyURL.php" />
+    <input type="hidden" name="ClientReplyURL" value="http://www.sample.com.tw/ClientReplyURL.php" />
+    <input type="hidden" name="LogisticsC2CReplyURL" value="http://www.sample.com.tw/LogisticsC2CReplyURL.php" />
+    <input type="hidden" name="Remark" value="測試備註" />
+    <input type="hidden" name="PlatformID" value="" />
+    <input type="hidden" name="SenderZipCode" value="11560" />
+    <input type="hidden" name="SenderAddress" value="台北市南港區三重路 19-2 號 10 樓 D 棟" />
+    <input type="hidden" name="ReceiverZipCode" value="11560" />
+    <input type="hidden" name="ReceiverAddress" value="台北市南港區三重路 19-2 號 5 樓 D 棟" />
+    <input type="hidden" name="Temperature" value="0001" />
+    <input type="hidden" name="Distance" value="00" />
+    <input type="hidden" name="Specification" value="0004" />
+    <input type="hidden" name="ScheduledDeliveryTime" value="3" />
+    <input type="hidden" name="ScheduledPickupTime" value="4" />
+    <input type="hidden" name="CheckMacValue" value="7952E9EF7E1E47DE035CBB6B4C047077" />
+    <input type="submit" id="__paymentButton" value="宅配物流訂單建立" />
+  </form>
+</div>
+ECPay 宅配物流訂單產生(CreateShippingOrder) 測試通過
+Array
+(
+    [ResCode] => 1
+    [AllPayLogisticsID] => 16036
+    [BookingNote] => 1617145851
+    [CheckMacValue] => EAF9B1B5F5E23F91310255DB3D5B1FCF
+    [CVSPaymentNo] => 
+    [CVSValidationNo] => 
+    [GoodsAmount] => 1500
+    [LogisticsSubType] => TCAT
+    [LogisticsType] => HOME
+    [MerchantID] => 2000132
+    [MerchantTradeNo] => no20161017065128
+    [ReceiverAddress] => 台北市南港區三重路 19-2 號 5 樓 D 棟
+    [ReceiverCellPhone] => 0933222111
+    [ReceiverEmail] => test_emjhdAJr@test.com.tw
+    [ReceiverName] => 測試收件者
+    [ReceiverPhone] => 0226550115
+    [RtnCode] => 300
+    [RtnMsg] => 訂單處理中(已收到訂單資料)
+    [UpdateStatusDate] => 2016/10/17 14:51:58
+)
+ECPay 幕後宅配物流訂單產生(BGCreateShippingOrder) 測試通過
+<div style="text-align:center;">
+  <form id="ECPayForm" method="POST" action="https://logistics-stage.ecpay.com.tw/Express/Create" target="_self">
+    <input type="hidden" name="MerchantID" value="2000132" />
+    <input type="hidden" name="MerchantTradeNo" value="no20161017065129" />
+    <input type="hidden" name="MerchantTradeDate" value="2016/10/17 06:51:29" />
+    <input type="hidden" name="LogisticsType" value="CVS" />
+    <input type="hidden" name="LogisticsSubType" value="FAMI" />
+    <input type="hidden" name="GoodsAmount" value="1500" />
+    <input type="hidden" name="CollectionAmount" value="10" />
+    <input type="hidden" name="IsCollection" value="Y" />
+    <input type="hidden" name="GoodsName" value="測試商品 A#測試商品 B" />
+    <input type="hidden" name="SenderName" value="測試寄件者" />
+    <input type="hidden" name="SenderPhone" value="0226550115" />
+    <input type="hidden" name="SenderCellPhone" value="0911222333" />
+    <input type="hidden" name="ReceiverName" value="測試收件者" />
+    <input type="hidden" name="ReceiverPhone" value="0226550115" />
+    <input type="hidden" name="ReceiverCellPhone" value="0933222111" />
+    <input type="hidden" name="ReceiverEmail" value="test_emjhdAJr@test.com.tw" />
+    <input type="hidden" name="TradeDesc" value="測試交易敘述" />
+    <input type="hidden" name="ServerReplyURL" value="http://www.sample.com.tw/ServerReplyURL.php" />
+    <input type="hidden" name="ClientReplyURL" value="http://www.sample.com.tw/ClientReplyURL.php" />
+    <input type="hidden" name="LogisticsC2CReplyURL" value="http://www.sample.com.tw/LogisticsC2CReplyURL.php" />
+    <input type="hidden" name="Remark" value="測試備註" />
+    <input type="hidden" name="PlatformID" value="" />
+    <input type="hidden" name="ReceiverStoreID" value="001779" />
+    <input type="hidden" name="ReturnStoreID" value="001779" />
+    <input type="hidden" name="CheckMacValue" value="20254CABD68EF9B58DC116CDFE0CB126" />
+    <input type="submit" id="__paymentButton" value="超商取貨物流訂單建立" />
+  </form>
+</div>
+ECPay 超商取貨物流訂單產生(CreateShippingOrder) 測試通過
+Array
+(
+    [ResCode] => 1
+    [AllPayLogisticsID] => 16037
+    [BookingNote] => 
+    [CheckMacValue] => A8A905CEBA1703A713D29AE33969879E
+    [CVSPaymentNo] => 
+    [CVSValidationNo] => 
+    [GoodsAmount] => 1500
+    [LogisticsSubType] => UNIMART
+    [LogisticsType] => CVS
+    [MerchantID] => 2000132
+    [MerchantTradeNo] => no20161017065129
+    [ReceiverAddress] => 
+    [ReceiverCellPhone] => 0933222111
+    [ReceiverEmail] => test_emjhdAJr@test.com.tw
+    [ReceiverName] => 測試收件者
+    [ReceiverPhone] => 0226550115
+    [RtnCode] => 300
+    [RtnMsg] => 訂單處理中(已收到訂單資料)
+    [UpdateStatusDate] => 2016/10/17 14:51:58
+)
+ECPay 幕後超商取貨物流訂單產生(BGCreateShippingOrder) 測試通過
+Array
+(
+    [RtnCode] => 0
+    [RtnMsg] => 物流規格錯誤，無法對應正確物流服務
+)
+ECPay 宅配逆物流訂單產生(CreateHomeReturnOrder) 測試通過
+Array
+(
+    [RtnMerchantTradeNo] => 1610171451589
+    [RtnOrderNo] => 069030759028
+)
+ECPay 超商取貨逆物流訂單(全家超商 B2C)(CreateFamilyB2CReturnOrder) 測試通過
+Array
+(
+    [RtnCode] => 0
+    [RtnMsg] => 找不到訂單資料
+)
+ECPay 全家逆物流核帳(全家超商 B2C)(CheckFamilyB2CLogistics) 測試通過
+Array
+(
+    [RtnCode] => 0
+    [RtnMsg] => 資料處理中，無法異動
+)
+ECPay 廠商修改物流資訊(統一超商 B2C)(UpdateUnimartLogisticsInfo) 測試通過
+Array
+(
+    [RtnCode] => 0
+    [RtnMsg] => 新取貨門市代碼與舊取貨門市代碼相同。
+)
+ECPay 更新門市(統一超商 C2C)(UpdateUnimartStore) 測試通過
+Array
+(
+    [RtnCode] => 0
+    [RtnMsg] => 無相關訂單可提供取消。
+)
+ECPay 取消訂單(統一超商 C2C)(CancelUnimartLogisticsOrder) 測試通過
+Array
+(
+    [RtnCode] => 0
+    [RtnMsg] => 找不到訂單資料
+)
+ECPay 物流訂單查詢(QueryLogisticsInfo) 測試通過
+ECPay 產生托運單(宅配)/一段標(超商取貨)(PrintTradeDoc) 測試通過
+ECPay 列印統一繳款單(統一超商 C2C)(PrintUnimartC2CBill) 測試通過
+ECPay 列印全家小白單(全家超商 C2C)(PrintFamilyC2CBill) 測試通過
+ECPay CheckMacValue 驗證功能(CheckOutFeedback) 測試通過

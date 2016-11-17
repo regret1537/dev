@@ -19,7 +19,8 @@
 	}
  
 	$sSrc_Dir = __DIR__ . '/file';
-	$sSrc_File_Name = 'bin_table_201608.csv';
+	// $sSrc_File_Name = 'bin_table_201608.csv';
+	$sSrc_File_Name = 'bin_table_161103_01.csv';
 	$sSrc_File_Path = $sSrc_Dir . '/' . $sSrc_File_Name;
 	$sDest_File_Name = 'bin_table_' . date('ymd') . '.csv';
 	$sDest_File_Path = $sSrc_Dir . '/' . $sDest_File_Name;
