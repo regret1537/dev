@@ -1,63 +1,64 @@
 <?php
-/**
- * 印出訊息
- * @param  [string] $content 內容
- */
-function disp($content) {
-	echo $content . PHP_EOL;
-}
+include('config/RetriveConfig.php');
 
-
-
-define('DB_HOST', '10.10.1.65');
-define('DB_NAME', 'train');
-define('DB_USER', 'train');
-define('DB_PASS', 'trainps');
-define('DB_ENC', 'UTF8');
-define('ROOT_PATH', '.');
-define('CSV_PATH', 'file');
-define('KEY', 'ax350svBgow81r4L');
-
-include(ROOT_PATH . '/lib/ClassCsv.php');
-include(ROOT_PATH . '/lib/ClassMysql.php');
-
-$src_csv_name = $argv[1];
+include(LIB_PATH . '/ClassCsv.php');
+include(LIB_PATH . '/ClassMysql.php');
+include(LIB_PATH . '/ClassDate.php');
+include(LIB_PATH . '/ClassDisp.php');
 
 $mysql = new ClassMysql(DB_HOST, DB_USER, DB_PASS);
-$csv = new ClassCsv(CSV_PATH . '/' . $src_csv_name);
+$csv = new ClassCsv();
 
-$new_csv_name = date('ymdHi') . '.csv';
-$new_csv_path = CSV_PATH . '/' . $new_csv_name;
 $sql = '';
 $check_fields = ['goid', 'bkid', 'gosn', 'bksn', 'card8'];
 $set_fields = ['pay_amount', 'refund_amount', 'fee', 'pay_day', 'refund_day'];
 $report_fields = array_merge($check_fields, $set_fields);
 $id = '';
 $sn = '';
+$query_format = 'Y/m/d';
+$csv_format = 'Ymd';
 $trade_day = '';
 $refund_day = '';
 $card4 = '';
 $report_row = '';
 
-// Write CSV fields
-$report_row = implode(',', $report_fields) . PHP_EOL;
-file_put_contents($new_csv_path, $report_row);
-
 try {
+	// Parameter check
+	if (isset($argv[1]) === false) {
+		throw new Exception('01');
+	}
+
+	// Source CSV
+	$src_csv_name = $argv[1];
+	$src_csv_path = SRC_PATH . '/' . $src_csv_name;
+
+	// Source CSV exist check
+	if (file_exists($src_csv_path) === false) {
+		throw new Exception('02');
+	}
+
+	// New CSV
+	list($csv_name, $csv_ext) = explode('.', $src_csv_name);
+	$new_csv_name = $csv_name . '_' . ClassDate::now('ymdHis') . '.csv';
+	$new_csv_path = CSV_PATH . '/' . $new_csv_name;
+
 	// Get CSV content
-	$data = $csv->get_data();
+	$data = $csv->getData($src_csv_path);
 
 	// Connect to Mysql
 	$mysql->connect();
-	$mysql->set_db_name(DB_NAME);
-	$mysql->set_db_enc(DB_ENC);
+	$mysql->setDbName(DB_NAME);
+	$mysql->setDbEnc(DB_ENC);
+
+	// Write CSV fields
+	$csv->setData($new_csv_path, $report_fields);
 
 	// Parse CSV content
 	foreach ($data as $row_data) {
     	$id = $row_data[0];
     	$sn = $row_data[2];
-    	$trade_day = date('Y/m/d', strtotime($row_data[10] . '000000'));
-    	$refund_day = date('Y/m/d', strtotime($row_data[11] . '000000'));
+    	$trade_day = ClassDate::format($query_format, $row_data[10] . '000000');
+    	$refund_day = ClassDate::format($query_format, $row_data[11] . '000000');
     	$card4 = $row_data[15];
 
     	// Set SQL
@@ -86,8 +87,8 @@ try {
 			$pay_amount = $detail[0]['amount'];
 			$refund_amount = $detail[1]['amount'];
 			$fee = $pay_amount + $refund_amount;
-			$pay_day = date('Ymd', strtotime($detail[0]['rtime']));
-			$refund_day = date('Ymd', strtotime($detail[1]['rtime']));
+			$pay_day = ClassDate::format($csv_format, $detail[0]['rtime']);
+			$refund_day = ClassDate::format($csv_format, $detail[1]['rtime']);
 
 			// Set the check fields
 			$temp_data = [];
@@ -102,15 +103,12 @@ try {
 				array_push($temp_data, ${$field});
 			}
 
-			// Generate a row
-			$report_row = implode(',', $temp_data) . PHP_EOL;
-
 			// Write to new CSV
-			file_put_contents($new_csv_path, $report_row, FILE_APPEND);
+			$csv->setData($new_csv_path, $temp_data, true);
 		}
 	}
 	$mysql->close();
 } catch (Exception $e) {
-	disp('error code: ' . $e->getMessage());
+	ClassDisp::dispString('error code: ' . $e->getMessage());
 }
 

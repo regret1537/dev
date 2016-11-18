@@ -53,7 +53,7 @@
          * Set Mysql use DB
          * @param string $name Mysql DB Name
          */
-        public function set_db_name($name)
+        public function setDbName($name)
         {
             if (mysql_select_db($name, $this->resource) === false) {
                 throw new Exception('11');
@@ -64,9 +64,9 @@
          * Set Mysql encode
          * @param string $enc Mysql encode
          */
-        public function set_db_enc($enc)
+        public function setDbEnc($enc)
         {
-            if (mysql_query('SET NAMES ' . $enc, $this->resource) === false) {
+            if (mysql_query('SET NAMES "' . $enc . '"', $this->resource) === false) {
                 throw new Exception('12');
             }
         }
