@@ -81,3 +81,5 @@ shell/allpay2ecpay/file/SDK/
 shell/bin_csv_transfer/file/
 shell/allpay2ecpay/file/
 shell/test.php
+shell/typhoon_fee/config/RetriveConfig.php
+shell/typhoon_fee/config/ZipConfig.php

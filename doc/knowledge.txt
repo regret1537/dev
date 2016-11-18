@@ -1,45 +1,49 @@
+
+å¾…è¾¦äº‹é …:
+    1.ç¢ºèª ECBank æ˜¯å¦ä½¿ç”¨ 192.168.8.98 umail02 server å¯„ä¿¡
+-----------------------------------------------------------------------------------------------------------------------
 Railway:
-    Ãö±b³W®æ: [$GWECpauUrl/tarin_close.php?s=[±ÂÅv³æ¸¹]&a=[°h´Úª÷ÃB(¥¿¼Æ)]&t=minus&c=[ÀË¬d½X]&Ntime=[201509xxxxxxxx]]
------------------------------------------------------------------------------------------------------------------------ 
+    é—œå¸³è¦æ ¼: [$GWECpauUrl/tarin_close.php?s=[æˆæ¬Šå–®è™Ÿ]&a=[é€€æ¬¾é‡‘é¡(æ­£æ•¸)]&t=minus&c=[æª¢æŸ¥ç¢¼]&Ntime=[201509xxxxxxxx]]
+-----------------------------------------------------------------------------------------------------------------------
 /**
- *  ¨ç¼Æ¦WºÙ
- *  ¨ç¼Æ´y­z(¦³¨Ç·|§tHTML¥N½X)
+ *  å‡½æ•¸åç¨±
+ *  å‡½æ•¸æè¿°(æœ‰äº›æœƒå«HTMLä»£ç¢¼)
  *
- * @access   ÅÜ¼Æ¥i¦s¨úªºÅv­­ (Example: Public or Private)
- * @api    ?²Ä¤T¤è¨Ó·½ªºÅÜ¼Æ
- * @author   ¨ç¼Æ«Ø¥ßªÌ¦WºÙ (Example: @author Barry <riceooks[at]gmail.com>)
- * @category  ¨ç¼Æªº¤ÀÃş§O¦W¡A¥i¯à¬Y¨Ç¤u¨ã·|§Q¥Î³o­Ó¨Ó¤ÀÃş§Aªº¤èªk¡A¨Ï¦n´X­Ó¤èªkÂk¬°¬Y¤@Ãş¡A¤è«K°µ¿ëÃÑ¨Ï¥Î
- * @copyright  ¨ç¼Æªºª©Åv«Å§i (Example: @copyright ÀH¤â¼g¦³­­¤½¥q www.barryblogs.com)
- * @deprecated  ¥Nªí¤£«ØÄ³¨Ï¥Îªº¨ç¼Æ¡A¥¼¨Ó¥i¯à·|²¾°£³o­Ó¤èªk¨Ï¥Î¨ìªº¬Y­ÓÅÜ¼Æ¡A©Î¾ã­Ó¤èªk³£³Q§R°£
- * @example   ¥Nªí³o­Ó¨ç¼Æ¨Ï¥Î¤è¦¡¥i¥H°Ñ¦Ò¬Y­Ó¸ê®Æ¡A¥i¥H¨Ï¥ÎÀÉ®×¦ì¸m©Îºô§}
+ * @access   è®Šæ•¸å¯å­˜å–çš„æ¬Šé™ (Example: Public or Private)
+ * @api    ?ç¬¬ä¸‰æ–¹ä¾†æºçš„è®Šæ•¸
+ * @author   å‡½æ•¸å»ºç«‹è€…åç¨± (Example: @author Barry <riceooks[at]gmail.com>)
+ * @category  å‡½æ•¸çš„åˆ†é¡åˆ¥åï¼Œå¯èƒ½æŸäº›å·¥å…·æœƒåˆ©ç”¨é€™å€‹ä¾†åˆ†é¡ä½ çš„æ–¹æ³•ï¼Œä½¿å¥½å¹¾å€‹æ–¹æ³•æ­¸ç‚ºæŸä¸€é¡ï¼Œæ–¹ä¾¿åšè¾¨è­˜ä½¿ç”¨
+ * @copyright  å‡½æ•¸çš„ç‰ˆæ¬Šå®£å‘Š (Example: @copyright éš¨æ‰‹å¯«æœ‰é™å…¬å¸ www.barryblogs.com)
+ * @deprecated  ä»£è¡¨ä¸å»ºè­°ä½¿ç”¨çš„å‡½æ•¸ï¼Œæœªä¾†å¯èƒ½æœƒç§»é™¤é€™å€‹æ–¹æ³•ä½¿ç”¨åˆ°çš„æŸå€‹è®Šæ•¸ï¼Œæˆ–æ•´å€‹æ–¹æ³•éƒ½è¢«åˆªé™¤
+ * @example   ä»£è¡¨é€™å€‹å‡½æ•¸ä½¿ç”¨æ–¹å¼å¯ä»¥åƒè€ƒæŸå€‹è³‡æ–™ï¼Œå¯ä»¥ä½¿ç”¨æª”æ¡ˆä½ç½®æˆ–ç¶²å€
     (Example: @example http://www.barryblogs.com/)
- * @filesource  ³o­Ó¨ç¼Æ©Ò»İªº¨Ó·½
- * @global   ¨ç¼Æ¤º¦³¨Ï¥Îªº¥ş°ìÅÜ¼Æµù¸Ñ (Example: @global Number $user_id)
- * @ignore   ¥Nªí³o­Ó¨ç¼Æ©Î°Ï°ì¥i¥H³Q©¿²¤¡A³q±`·|¥[¤W»¡©ú
- * @internal   ¥Nªí³o­Ó¨ç¼Æ©Î°Ï°ì¥i¯à¥uµ¹¤©¤º³¡¨Ï¥Î
- * @license   ¦¹¨ç¼Æ¥i¯à¬O§t¦³¬Y­Óª©Åv©Î³\¥i
+ * @filesource  é€™å€‹å‡½æ•¸æ‰€éœ€çš„ä¾†æº
+ * @global   å‡½æ•¸å…§æœ‰ä½¿ç”¨çš„å…¨åŸŸè®Šæ•¸è¨»è§£ (Example: @global Number $user_id)
+ * @ignore   ä»£è¡¨é€™å€‹å‡½æ•¸æˆ–å€åŸŸå¯ä»¥è¢«å¿½ç•¥ï¼Œé€šå¸¸æœƒåŠ ä¸Šèªªæ˜
+ * @internal   ä»£è¡¨é€™å€‹å‡½æ•¸æˆ–å€åŸŸå¯èƒ½åªçµ¦äºˆå…§éƒ¨ä½¿ç”¨
+ * @license   æ­¤å‡½æ•¸å¯èƒ½æ˜¯å«æœ‰æŸå€‹ç‰ˆæ¬Šæˆ–è¨±å¯
     (Example: @license http://opensource.org/licenses/gpl-license.php GNU Public License)
- * @link    ¥i¯à»P¬Y­Óºô¯¸¦³Ãö«Y (Example: @link http://www.barryblogs.com/)
- * @method   ¨ç¼Æ¦³¨Ï¥Îªº¤èªk (Example: @method Array @this->getCategories() or @method String getUserName())
- * @package   §Q¥Î³o­Óµù¸Ñ¨Ó¹F¨ì²Ó³¡¤À¼hµ²ºc (Example: @package PSR\Documentation\API or @package PSR\Documentation\Doc)
- * @param    ¨ç¼Æ­n±a¤Jªº°Ñ¼Æ (Example: @param String|Number $username)
- * @property   ¦pªG³o¬O¤@­ÓÃş§Oªº¨ç¼Æ¡A¦bÃş§O«Øºc®É³q±`·|«ü©wªì©l¤Æ°Ñ¼Æ¡A
-    ¦Ó³o­Ó¨ç¼Æ¥i¯à·|¨Ï¥Î¨ì¬Y¨Çªì©l¤Æ«áªº°Ñ¼Æ¡AºÙ¤§¬°Äİ©Ê (Example: @property Resource|Boolean $mysql_connect)
- * @return   ¨ç¼Æ³Ì«áªº¦^¶Ç­È©Î§ÎºA (Example: @return Array|Object|Boolean)
- * @see    ¨ç¼Æ°Ñ·Ó©ÎÃöÁpªº¤èªk (Example: @see Class User or @see <a href="http://www.barryblogs.com/">BarryBlogs</a>)
- * @since    ¨ç¼Æ¤º¬Y­Ó¨Ï¥ÎªºÅÜ¼Æ¥Ñ­ş­Óª©¥»ÅÜ°Ê (Example: @since v1.3376a $user_nickname )
- * @source   ³o­Ó¤ñ¸û¯S§O¡A¦b¨ç¼Æ¤¤¥i¥H¼Ğ¥Ü±q m ¦Ü n ¦æ ¬O°µ¤°»ò¨Æ±¡ (Example: @source 14 21 Get user data)
- * @static   ÀRºAÅÜ¼Æªºµù¸Ñ (Example: @static String $lang = 'zh_TW')
- * @subpackage  §Q¥Î³o­Óµù¸Ñ¨Ó¹F¨ì²Ó³¡¤À¼h¤lµ²ºc¡A³q±`·|¦P®É¨Ï¥Î @package¡A¥i¥H°Ñ¦Ò¤W­±ªº@package
+ * @link    å¯èƒ½èˆ‡æŸå€‹ç¶²ç«™æœ‰é—œä¿‚ (Example: @link http://www.barryblogs.com/)
+ * @method   å‡½æ•¸æœ‰ä½¿ç”¨çš„æ–¹æ³• (Example: @method Array @this->getCategories() or @method String getUserName())
+ * @package   åˆ©ç”¨é€™å€‹è¨»è§£ä¾†é”åˆ°ç´°éƒ¨åˆ†å±¤çµæ§‹ (Example: @package PSR\Documentation\API or @package PSR\Documentation\Doc)
+ * @param    å‡½æ•¸è¦å¸¶å…¥çš„åƒæ•¸ (Example: @param String|Number $username)
+ * @property   å¦‚æœé€™æ˜¯ä¸€å€‹é¡åˆ¥çš„å‡½æ•¸ï¼Œåœ¨é¡åˆ¥å»ºæ§‹æ™‚é€šå¸¸æœƒæŒ‡å®šåˆå§‹åŒ–åƒæ•¸ï¼Œ
+    è€Œé€™å€‹å‡½æ•¸å¯èƒ½æœƒä½¿ç”¨åˆ°æŸäº›åˆå§‹åŒ–å¾Œçš„åƒæ•¸ï¼Œç¨±ä¹‹ç‚ºå±¬æ€§ (Example: @property Resource|Boolean $mysql_connect)
+ * @return   å‡½æ•¸æœ€å¾Œçš„å›å‚³å€¼æˆ–å½¢æ…‹ (Example: @return Array|Object|Boolean)
+ * @see    å‡½æ•¸åƒç…§æˆ–é—œè¯çš„æ–¹æ³• (Example: @see Class User or @see <a href="http://www.barryblogs.com/">BarryBlogs</a>)
+ * @since    å‡½æ•¸å…§æŸå€‹ä½¿ç”¨çš„è®Šæ•¸ç”±å“ªå€‹ç‰ˆæœ¬è®Šå‹• (Example: @since v1.3376a $user_nickname )
+ * @source   é€™å€‹æ¯”è¼ƒç‰¹åˆ¥ï¼Œåœ¨å‡½æ•¸ä¸­å¯ä»¥æ¨™ç¤ºå¾ m è‡³ n è¡Œ æ˜¯åšä»€éº¼äº‹æƒ… (Example: @source 14 21 Get user data)
+ * @static   éœæ…‹è®Šæ•¸çš„è¨»è§£ (Example: @static String $lang = 'zh_TW')
+ * @subpackage  åˆ©ç”¨é€™å€‹è¨»è§£ä¾†é”åˆ°ç´°éƒ¨åˆ†å±¤å­çµæ§‹ï¼Œé€šå¸¸æœƒåŒæ™‚ä½¿ç”¨ @packageï¼Œå¯ä»¥åƒè€ƒä¸Šé¢çš„@package
     Example: @package PSR
              @subpackage Documentation\API
- * @throws   ¨Ò¥~³B²zªºµù¸Ñ¡A¦³¦hºØ¨Ò¥~³B²zªº¤è¦¡¡A¨CºØ¤è¦¡³£¤£¦P
+ * @throws   ä¾‹å¤–è™•ç†çš„è¨»è§£ï¼Œæœ‰å¤šç¨®ä¾‹å¤–è™•ç†çš„æ–¹å¼ï¼Œæ¯ç¨®æ–¹å¼éƒ½ä¸åŒ
     Example: @throws InvalidArgumentException if the provided argument is not of type 'array'
              @throws Exception other...
- * @todo    ­p¹º­n¶i¦æªº¶µ¥Ø´y­z¡A¤@¯ëÀ³¸Ó·|¨Ï¥Î¤å¦r´y­z
- * @uses    ¥Nªí¬Y­Ó¤¸¯À¥i¯à»P¨ä¥¦µ²ºc¦³§Q¥ÎÃö«Y (Example: @uses MyClass::$items to retrieve the count from)
- * @var    ÅÜ¼Æ(ª«¥ó¦¨­ûÅÜ¼Æ)ªº§ÎºA©Î´y­z (Example: @var Boolean)
- * @version   ¨ç¼Æªºª©¥» (Example: v1.3258c)
+ * @todo    è¨ˆåŠƒè¦é€²è¡Œçš„é …ç›®æè¿°ï¼Œä¸€èˆ¬æ‡‰è©²æœƒä½¿ç”¨æ–‡å­—æè¿°
+ * @uses    ä»£è¡¨æŸå€‹å…ƒç´ å¯èƒ½èˆ‡å…¶å®ƒçµæ§‹æœ‰åˆ©ç”¨é—œä¿‚ (Example: @uses MyClass::$items to retrieve the count from)
+ * @var    è®Šæ•¸(ç‰©ä»¶æˆå“¡è®Šæ•¸)çš„å½¢æ…‹æˆ–æè¿° (Example: @var Boolean)
+ * @version   å‡½æ•¸çš„ç‰ˆæœ¬ (Example: v1.3258c)
  */
  -----------------------------------------------------------------------------------------------------------------------
  Magento
@@ -89,7 +93,7 @@ Railway:
         2.basic route:
             Route::<get/post/match/any>(<uri>, <callback>);
             
-            uri: any string without ¡u-¡v
+            uri: any string without ã€Œ-ã€
             callback: array(
                 'as' => <alias>, // alias(only could use by "route function")
                 'uses' => <controller>@<function>, // controller
@@ -143,7 +147,7 @@ Railway:
             1.auto load data from DB by ID:
                 Route::<get/post/match/any/put/patch/delete>(<uri>, <callback>);
             
-                uri: <uri>/<id_name>(any string without ¡u-¡v)
+                uri: <uri>/<id_name>(any string without ã€Œ-ã€)
                 callback: 
                     function(App\<model_name> $<id_name>){
                         $<id_name>-><attribute>
@@ -155,7 +159,7 @@ Railway:
         4.use middleware:
             Route::<get/post/match/any/put/patch/delete>(<uri>, <callback>);
             
-            uri: any string without ¡u-¡v
+            uri: any string without ã€Œ-ã€
             callback: 
                 [
                     'middleware' => <register_name>:<parameter_name>, // middleware
@@ -170,7 +174,7 @@ Railway:
         2.use in routes.php:
             Route::<get/post/match/any/put/patch/delete>(<uri>, <callback>);
             
-            uri: any string without ¡u-¡v
+            uri: any string without ã€Œ-ã€
             callback: 
                 [
                     'as' => <alias>, // alias
@@ -184,12 +188,12 @@ Railway:
         
         
     Request:
-        1.define in ¡uIlluminate\Http\Request¡v
+        1.define in ã€ŒIlluminate\Http\Requestã€
         2.get request URI: $request->path()
         3.get url with query string: $request->fullUrl()
         4.get url without query string: $request->url()
         5.check url: $request->is(<uri>)
-            uri: could use ¡u*¡v
+            uri: could use ã€Œ*ã€
         6.get request method: $request->method()
         7.check method: $request->isMethod(<method_name>)
             method_name: case insensitive
@@ -200,7 +204,7 @@ Railway:
                     if it is a array, access it by following
                         <array_name>.<index_01>.<index_02>
             directly: $request-><name>
-        10.check request value: $request->has(<name>), if it is seted and not null, ¡uhas¡v will return true
+        10.check request value: $request->has(<name>), if it is seted and not null, ã€Œhasã€ will return true
         11.get all request: $request->all()
         12.get particular request: $request->only(<names>)
             name: set the request name to this array
@@ -213,7 +217,7 @@ Railway:
         16.get the cookie: $request->cookie(<name>)
         
     Response:
-        1.define in ¡uIlluminate\Http\Response¡v
+        1.define in ã€ŒIlluminate\Http\Responseã€
         2.use:
             response(<content>, <status>)
             new Response(<content>, <status>)
@@ -245,7 +249,7 @@ Railway:
         2.use:
             view(<name>, <data>)
                 name:
-                    use ¡u.¡v to seperate child dir
+                    use ã€Œ.ã€ to seperate child dir
                     Ex: resources/views/admin/profile.php > view('admin.profile', $data)
             view(<name>)->with(<name>, <value>)
         3.check if view exists: view()->exists(<name>)
@@ -254,14 +258,14 @@ Railway:
         1.file path: resources/views/*
         2.extension: <name>.blade.php
         3.extend: @extend(<name>)
-            name: without ¡u.blade.php¡vand use ¡u.¡v to seperate child dir
+            name: without ã€Œ.blade.phpã€and use ã€Œ.ã€ to seperate child dir
         4.use: view(<name>, <data>)
         5.display with htmlentities(): variable: {{ $<name> }}
         6.escape char: @
-        7.¡u{{ isset($name) ? $name : 'Default' }}¡v could be instead of ¡u{{ $name or 'Default' }}¡v
-        8.display without¡uhtmlentities()¡v: {!! $<name> !!}
+        7.ã€Œ{{ isset($name) ? $name : 'Default' }}ã€ could be instead of ã€Œ{{ $name or 'Default' }}ã€
+        8.display withoutã€Œhtmlentities()ã€: {!! $<name> !!}
         9.use php syntax:
-            apply ¡uhtmlentities()¡v: {{ method() }}
+            apply ã€Œhtmlentities()ã€: {{ method() }}
             if: @if, @elseif, @else, @endif
             unless(equal to "if not equal"): @unless, @endunless
             for: @for, @endfor
@@ -269,9 +273,9 @@ Railway:
             forelse(easy way to check empty value): @forelse, @empty, @endforelse
             while: @while, @endwile
         10.include a child name: @include(<name>, <parameters>)
-            name: without ¡u.blade.php¡vand use ¡u.¡v to seperate child dir
+            name: without ã€Œ.blade.phpã€and use ã€Œ.ã€ to seperate child dir
             
-            *** avoid to use ¡u__DIR__¡v and ¡u__FILE__¡v
+            *** avoid to use ã€Œ__DIR__ã€ and ã€Œ__FILE__ã€
         11.include view by each: @each(<view_name>, $<name>, <name_in_view>, <view_empty>)
             view_empty: use when $<name> is empty
         12.remark: {{--<remark>--}}
@@ -297,5 +301,30 @@ Railway:
     D:\www\railway\app\Http\Controllers\Auth\AuthController.php
     D:\www\railway\config\auth.php
     D:\www\railway\vendor\laravel\framework\src\Illuminate\Foundation\Auth\AuthenticatesUsers.php
-    
-    
+-----------------------------------------------------------------------------------------------------------------------
+è‡ªå‹•æ‰“å¡(æœªå®Œæˆ)
+1.
+
+<input type="button" value="ç°½åˆ°" onclick="actCheckInOrCheckOut(0);" />
+<input type="button" value="ç°½é€€" onclick="actCheckInOrCheckOut(1);" />
+
+2.
+function actCheckInOrCheckOut(checkInOrCheckOut,isPre) {
+        isPre = isPre || "false";
+        
+        $.ajax({
+            type: 'post',
+            url: 'EditMonthForCustomerService',
+            data:
+            {
+                checkInOrCheckOut: checkInOrCheckOut,
+                isPre: isPre
+            },
+            success: function (data) {
+                if (data != null) {
+                    $("#queryResult").show();
+                    $("#queryResult").html(data);
+                }
+            }
+        });
+    }
