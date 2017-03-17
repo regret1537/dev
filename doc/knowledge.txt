@@ -87,7 +87,295 @@ Railway:
  install php 5.6 vagrant homestead
     1. Command in git bash: vagrant box add laravel/homestead --box-version 0.3.3
  -----------------------------------------------------------------------------------------------------------------------
- Laravel:
+ Laravel 5.3:
+    Authentication:
+
+        介紹:
+            想要快速的開始嗎?
+            只要在一個全新的 Laravel 程式執行 php artisan make:auth 和 php artisan migrate 。
+            然後，瀏覽你的瀏覽器到 http://your-app.dev/register 或其他任何的 URL 指定到你的應用程式。
+            這 2 個指令將幫你建構整個認證系統！
+
+            Laravel 讓實作認證變得非常簡單。
+            事實上，幾乎每件事都為你設定在 box 之外。
+            認證設定檔在 config/auth.php，
+            它包含了數個良好文檔的選項來調整認證服務的行為。
+
+            在它的核心，Laravel 認證功能被 "guards" 和 "providers" 補足。
+
+            "guards" 定義了每個 request 使用者如何被認證。
+            舉個例，Laravel 發送一個 session guard，它用 session 儲存器和 cookie 來維護狀態。
+
+            "Providers" 定義了使用者如何被從固定儲存器檢索
+            Laravel 發送檢索使用者的支援，它使用 Eloquent 與 Database Query Builder。
+            然而，你可自由的依你程式所需，定義額外的 "provider"。
+
+            別擔心，即使現在這一切聽起來很混亂！
+            許多應用程式將永遠不需要變更預設的認證設定。
+
+        Database Considerations
+        資料庫考量:
+
+            預設，Laravel 包含了一個 App\User Eloquent model 在你的 app 目錄。
+            這個 model 可能預設使用 Eloquent 認證驅動程式。
+            如果你的應用程式不使用 Eloquent，
+            你可以使用運用了 Laravel Query Builder 的資料庫認證驅動程式。
+
+            當為 App\User model 建置資料庫的架構時，
+            確認 password 欄位的長度至少是 60 字元。
+            建議保持字串欄位預設長度為 255 字元。
+
+            同樣地，你應該檢查你的 users (或相同的)資料表，需包含一個空白且長度為 100 字元的字串欄位 remeber_token。
+            這個欄位將於登入選取 "記住我" 時儲存使用者的 token。
+
+        認證快速開始:
+
+            Laravel 發送數個預先建立的認證 controller，
+            它們位於 App\Http\Controller\Auth namespace。
+            RegisterController 控制註冊新使用者，
+            LoginController 控制認證，
+            ForgetPasswordController 控制忘記密碼的 E-Mail 連結，
+            ResetPasswordController 包含了重設密碼的邏輯。
+            每個 controller 使用 trait 來 include 他們必要的方法。
+            對大部份應用程式來說，你完全不需要修改這些 controller。
+
+        路由:
+
+            Laravel 提供了一個簡單的指令，快速建構所有你認證所需的 route 和 view，
+
+            [command]
+            php artisan make:auth
+
+            這個指令應被用於"全新的程式"，並安裝佈局，註冊和登入的view，以及所有認證終點的路由。
+            HomeController 也被產生，用以操控 post-login request 到你應用程式的。
+
+        視圖:
+
+            在上面的說明中，"php artisan make:auth" 指令將產生所有認證所需要的 view，並存放在 resources/views/auth 目錄。
+
+            "make:auth" 指令也將建立 resources/views/layouts 目錄，內含基本的佈局。
+            這些 view 都使用 Bootstrap CSS framework，但是你可以依你的想法自由修改它們。
+
+        認證:
+
+        現在你的 route 和 view 包含了認證 controller 的設定，你可以註冊並認證新的使用者！
+        你可以輕易地存取你的網頁程式，因為認證 controller 已經包含了認證使用者和儲存新使用者至資料庫的邏輯。
+
+            變更路徑:
+
+                當使用者認證成功，他們將會被轉導到 /home URI。
+                你可以透過定義 LoginController, RegisterController 和 ResetPasswordController 的 "redirectTo" 屬性
+                變更 post-authentication 轉導的位置。
+
+                [code]
+                protected $redirectTo = '/';
+
+                當使用者認證失敗，他們將自動被導回登入頁面。
+
+            變更使用者名稱:
+
+                Laravel 預設使用 email 欄位認證。
+                你可以透過定義 username 方法在你的 LoginController，來變更認證的欄位。
+
+                [code]
+                public function username()
+                {
+                    return 'username';
+                }
+
+            變更 Guard:
+
+                你也可以變更認證與註冊使用者的 "guard"。
+                定義一個 guard 方法在你的 LoginController, RegisterController 和 ResetPasswordController，這個方法應該回傳 grard 實例:
+
+                [code]
+                use Illuminate\Support\Facades\Auth;
+
+                protected function guard()
+                {
+                    return Auth::guard('guard-name');
+                }
+
+            變更驗證 / 儲存:
+
+            你可以透過修改需要的表單欄位，變更新使用者註冊或新使用者儲存至資料庫的方式。
+            你可以修改 RegisterController 類別。
+            這個類別負責驗證與建立新使用者。
+
+            RegisterController 的 validator 方法包含了新使用者的驗證規則。
+            你可以自由修改這個方法。
+
+            RegisterController 的 create 方法負責使用 Eloquent ORM 建立新 App\User 記錄到資料庫。
+            你根據你的需求自由修改它。
+
+            
+            取得已認證的使用者
+
+            你可以透過 Auth facade 取得已認證的使用者:
+
+            [code]
+            use Illuminate\Support\Facades\Auth;
+
+            // Get the currently authenticated user...
+            $user = Auth::user();
+
+            // Get the currently authenticated user's ID...
+            $id = Auth::id();
+
+            或者，一旦使用者被認證，你可以存取這個使用者透過 Illuminate\Http\Request 實例。
+            記住，提示的類別將被自動地注入你的 controller 方法:
+
+            [code]
+            <?php
+
+            namespace App\Http\Controllers;
+
+            use Illuminate\Http\Request;
+
+            class ProfileController extends Controller
+            {
+                /**
+                 * Update the user's profile.
+                 *
+                 * @param  Request  $request
+                 * @return Response
+                 */
+                public function update(Request $request)
+                {
+                    // $request->user() returns an instance of the authenticated user...
+                }
+            }
+
+        Eloquent:
+            一對一
+
+            一對一的關係是非常基本的關聯。
+            例如，User model 可能與 Phone model 有關。
+            我們加入一個 phone 方法到 User model 來定義這關係。
+            phone 方法應呼叫 hasOne 方法並回傳他的結果:
+            [code]
+            <?php
+
+            namespace App;
+
+            use Illuminate\Database\Eloquent\Model;
+
+            class User extends Model
+            {
+                /**
+                 * Get the phone record associated with the user.
+                 */
+                public function phone()
+                {
+                    return $this->hasOne('App\Phone');
+                }
+            }
+
+            第一個傳入 hasOne 方法的參數是關聯的 model 名稱
+            一但關係被定義，我們將用 Eloquent 動態屬性查詢相關記錄。
+            動態屬性允許你存取關聯 function , 如果他們的有屬性被定義在 model 中:
+            [code]
+            $phone = User::find(1)->phone;
+
+            Eloquent 決定一個基於關聯 model 名稱的 foreign key。
+            在這個例子中，Phone model 自動地被假設有 user_id foreign key。
+            如果你希望改寫這項設定，你可以傳入第二個參數到 hasOne 方法:
+            [code]
+            return $this->hasOne('App\Phone', 'foreign_key');
+
+            此外，Eloquent 假設 foreign key 應該有相符於父 model id 欄位的值,
+            Eloquent 將尋找 phone 中，user 的 id 與 phone 的 user_id 相關聯的記錄。
+            如你希望使用 id 以外的值關聯，你可以傳入第三個參數到 hasOne 方法指定你的 key。
+            [code]
+            return $this->hasOne('App\Phone', 'foreign_key', 'local_key');
+
+
+            定義相對的關係
+
+            所以，我們可以從 User 存取 Phone model。
+            現在，讓我們定義一個關聯在 Phone model 上，這將讓我們存取 User 擁有的 phone 記錄。
+            [code]
+            <?php
+
+            namespace App;
+
+            use Illuminate\Database\Eloquent\Model;
+
+            class Phone extends Model
+            {
+                /**
+                 * Get the user that owns the phone.
+                 */
+                public function user()
+                {
+                    return $this->belongsTo('App\User');
+                }
+            }
+
+
+            在上面的例子，Eloquent 將試著從 Phone model 的 user_id 對應到 User model 的 id.
+            Eloquent 預設的 foreign key 名稱為 "關聯方法_id"。
+            無論如何，如果 Phone  model 的 foreign key 不是 user_id，
+            你可以傳入一個自訂的 key 名稱到 belongsTo 方法的第二個參數:
+            [code]
+            /**
+             * Get the user that owns the phone.
+             */
+            public function user()
+            {
+                return $this->belongsTo('App\User', 'foreign_key');
+            }
+
+            如果你的父 model 未使用 id 當它的 primary key，
+            或是你希望用不同的欄位關聯子 model，
+            你可以傳入第三個參數到 belongsTo 方法來指定你的父 table 自訂 key:
+            [code]
+            /**
+             * Get the user that owns the phone.
+             */
+            public function user()
+            {
+                return $this->belongsTo('App\User', 'foreign_key', 'other_key');
+            }
+
+    JavaScript & CSS:
+
+        JavaScript
+
+            Laravel 不需要你使用特定的 JavaScript framework 或 library 來開發你的程式。
+            事實上，你完全不用使用 JavaScript。
+            無論如何，Laravel 包含了一些基本架構來讓它很容易透過 "Vue" library 來開發現代化的 JavaScript。
+            Vue 提供了一個快速的 API 來使用 components 建置建全的 JavaScript 程式。
+
+        Writing JavaScript
+
+            你程式的所有 JavaScript 相依性需求可以從 package.json 中找到, package.json 放在專案的根目錄。
+            這檔案類似 composer.json ，不同的是它是指定 JavaScript 的相依性，而不是 PHP。
+            你可以用 Node package manager(NPM) 安裝這些相依性:
+            [command]
+            npm install
+
+            Laravel 預設 package.json 檔案包含了一些 package，像是 Vue 和 Vue-resource，用來幫助你建立 JavaScript 程式。
+            你可以自由地依你的需求從 package.json 加入或移除 package。
+
+            一但 package 被安裝，你可以用 gulp 指令來編譯 。
+            Glup 是一個建置 JavaScript 用的指令。
+            當你執行 glup 指令，Glup 將執行 glupfile.js 中的指令
+            [command]
+            glup
+
+            Laravel 預設使用 glupfils.js 編譯你的 SSAS 和 resouces/assets/js/app.js 檔案。
+            app.js 中你可以註冊你的 Vue 容器，如果你想使用不同的 framework ，請設定你的 JavaScript 程式。
+            你所編譯過的 JavaScript 將被置於 public/js 目錄。
+
+            app.js 將載入 bootstraps (resources/assets/js/bootstrap.js)
+            並設定 Vue、Vue Resource、JQuery 和其他 JavaScript 相依性。
+            如果你有額外的 JavaScript 相依性設定，
+            你可以在這麼做。
+
+
+-----------------------------------------------------------------------------------------------------------------------
+ Laravel 5.2:
     Routes:
         1.file path: \app\Http\routes.php
         2.basic route:
@@ -152,6 +440,7 @@ Railway:
                     function(App\<model_name> $<id_name>){
                         $<id_name>-><attribute>
                     });
+
     Middleware:
         1.file path: \app\Http\Middleware\*
         2.create a middleware: php artisan make:middleware <middleware_name>
@@ -167,7 +456,7 @@ Railway:
                 ]
         5.after request sent to client: add function "terminate($request, $response)" in the middleware
                                         and register to app/Http/Kernel.php > $middleware
-                                    
+
     Controller:
         1.file path: \app\Http\Controllers\*
         2.create a controller: php artisan make:controller <controller_name>
@@ -185,8 +474,7 @@ Railway:
         4.create route cache: php artisan route:cache
             (this command will use route cache to instead app/Http/routes.php)
         5.clear route cache: php artisan route:clear
-        
-        
+
     Request:
         1.define in 「Illuminate\Http\Request」
         2.get request URI: $request->path()
@@ -301,6 +589,7 @@ Railway:
     D:\www\railway\app\Http\Controllers\Auth\AuthController.php
     D:\www\railway\config\auth.php
     D:\www\railway\vendor\laravel\framework\src\Illuminate\Foundation\Auth\AuthenticatesUsers.php
+}
 -----------------------------------------------------------------------------------------------------------------------
 自動打卡(未完成)
 1.
@@ -328,3 +617,163 @@ function actCheckInOrCheckOut(checkInOrCheckOut,isPre) {
             }
         });
     }
+-----------------------------------------------------------------------------------------------------------------------
+Sublime:(https://mattstauffer.co/blog/sublime-text-3-for-php-developers)
+
+
+    Code sniffing and PHP_CodeSniffer #
+
+
+    Sublime PHPCS #
+
+    有個名為 Sublime PHPCS 的套件包內含 PHP_CodeSniffer, PHP's linter, PHP Mess Detector 和 Scheck(?) 來承接你的程式碼。
+
+    你可以調整所有設定的排序
+    但你主要地也正要執行它在每次存檔時(好, 但會變煩人),
+    或每次你從指令板上觸發它
+    (按下 super-shift-p 接下來按著它直到你取得 "PHP Code Sniffer: Sniff this file" 功能)
+    或鍵盤快捷(預設 ctrl-super-shift-s)
+
+    你將得到一段反白並有個列表顯示在最上層的程式碼不符位置上。
+
+    注意，這和其他任何依賴 code sniffing 和 linting 的套件包將需要指令行應用程式安裝
+    所以確認並訪問它們的網站並閱讀它們的導引。
+
+
+
+    PHP_CodeSniffer Sublime Text 2/3 Plugin #
+
+    有趣地，有一個相對被忽視的外掛做著相同的事(但只對 PHPCS)那由開發 PHP CodeSniffer 的相同團隊所開發
+    所以它可能值得看看;
+    它被叫做 PHP_CodeSniffer Sublime Text 2/3 外掛 (有創意，我知道)
+
+    儘管我已不在使用這個，所以要小心
+
+
+
+    Mike Francis PHP CS Fixer Build Script #
+
+    Mike Francis 也分享了一個客製化的腳本，由他開發，每當你觸發它的時候在你的程式碼中執行 PHP-CS-Fixer。
+    這表示它確實為你的落實 PSR-2 標準(或每當你傳給它其他 PHP-CS-Fixer 標準) 在你的程式碼中。
+
+    Taylor Otwell 和我確實的分享了一樣的腳本，但他沒開發的像 Mike 這麼好:)
+    無論如何，他做了，注意你將要調整這個設定:
+        "show_panel_on_build": false
+    ，這將保持它每次與你的結果一起彈出指令面板
+    它很快的將變的煩人。
+
+
+    SublimeLinter #
+
+    SbulimeLinter PHP (和他所需的相依套件, SublimeLinter) 依賴於 PHP 內建的 linter
+    (就像上面提到的 Sublime PHPCS 外掛)。
+    這是一個只能執行 linter 較簡單版本, 沒其他的。
+-----------------------------------------------------------------------------------------------------------------------
+Apache:
+    Restrict the access ip to specific directory:
+
+        1.edit /etc/httpd/conf/httpd.conf
+
+        2.find the directory section(Ex: /var/www/sub/payroll) and set it as follows:
+
+            [setting]
+            <Directory /var/www/sub/payroll/>
+                Order allow,deny
+                Allow from 192.168.1.0/24
+                Allow from 127
+            </Directory>
+
+            Description:
+                Order allow,deny:
+                    Access is denied by default.
+                    Any client in "Allow" could access to the server.
+
+                Allow from 192.168.1.0/24:
+                    Allow the client from 192.168.1.0/24.
+
+                Allow from 127
+                    Allow the client from 127.0.0.1(localhost).
+
+        3.save httpd.conf and restart Apache
+-----------------------------------------------------------------------------------------------------------------------
+PHP Word:(待確認)
+    纯HTML格式写入word
+
+    原理：
+
+    利用ob_start把html页面先存储起来（解决一下页面多个header问题，可以批量生成），然后在写入doc文档内容利用
+
+    代码：
+
+    <?php
+        class word
+        {
+            function start()
+            {
+                ob_start();
+                echo '<html xmlns:o="urn:schemas-microsoft-com:office:office"
+            xmlns:w="urn:schemas-microsoft-com:office:word"
+            xmlns="http://www.w3.org/TR/REC-html40">';
+            }
+            function save($path)
+            {
+                
+                echo "</html>";
+                $data = ob_get_contents();
+                ob_end_clean();
+                
+                $this->wirtefile($path, $data);
+            }
+            
+            function wirtefile($fn, $data)
+            {
+                $fp = fopen($fn, "wb");
+                fwrite($fp, $data);
+                fclose($fp);
+            }
+        }
+        $html = ' 
+            <table width=600 cellpadding="6" cellspacing="1" bgcolor="#336699"> 
+            <tr bgcolor="White"> 
+              <td>PHP10086</td> 
+              <td><a href="http://www.php10086.com" target="_blank" >http://www.php10086.com</a></td> 
+            </tr> 
+            <tr bgcolor="red"> 
+              <td>PHP10086</td> 
+              <td><a href="http://www.php10086.com" target="_blank" >http://www.php10086.com</a></td> 
+            </tr> 
+            <tr bgcolor="White"> 
+              <td colspan=2 > 
+              PHP10086<br> 
+              最靠谱的PHP技术博客分享网站 
+              <img src="http://www.php10086.com/wp-content/themes/WPortal-Blue/images/logo.gif"> 
+              </td> 
+            </tr> 
+            </table> 
+            ';
+
+        //批量生成 
+        for ($i = 1; $i <= 3; $i++) {
+            $word = new word();
+            $word->start();
+            //$html = "aaa".$i; 
+            $wordname = 'PHP淮北的个人网站--PHP10086.com' . $i . ".doc";
+            echo $html;
+            $word->save($wordname);
+            ob_flush(); //每次执行前刷新缓存 
+            flush();
+        }
+-----------------------------------------------------------------------------------------------------------------------
+Rebuild railway back-end:
+    1.Laravel 5.3
+    2.install illuminate/html
+        2-1.edit composer.json
+        2-2.insert 「"laravelcollective/html": "5.3.*"」 to the require section in app.php
+        2-3.run composer update
+    3.register the service provider
+        3-1.insert 「Collective\Html\HtmlServiceProvider::class,」 to the providers section in app.php
+    4.register the facade
+        4-1.insert 「'Form' => Collective\Html\FormFacade::class,」 to the aliases section in app.php
+        4-2.insert 「'Form' => Collective\Html\HtmlFacade::class,」 to the aliases section in app.php
+
+-----------------------------------------------------------------------------------------------------------------------

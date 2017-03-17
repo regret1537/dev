@@ -1,7 +1,7 @@
 <?php
-    include('../tpl/header.php');
-    include('../lib/html_common.inc');
-    include('../lib/misc.inc');
+    include('tpl/header.php');
+    include('lib/html_common.inc');
+    include('lib/misc.inc');
     
     // define('CHECK_OPTION', 'PAY');
     define('CHECK_OPTION', 'BOTH');
@@ -37,14 +37,22 @@
                             $t_refund_sum += $t_amt;
                             $t_trans_card_no = substr($t_card_no, 0, 6) . '******' . substr($t_card_no, -4);
                         }
-                        $t_sum[$t_trans_card_no] += $t_amt;
+                        if (!isset($t_sum[$t_trans_card_no])) {
+                            $t_sum[$t_trans_card_no] = $t_amt;
+                        } else {
+                            $t_sum[$t_trans_card_no] += $t_amt;
+                        }
                         break;
                     case 'PAY':
                         // 只檢查購票
                         if ($t_amt > 0) {
                             $t_pay_sum += $t_amt;
                             $t_trans_card_no = substr($t_card_no, 0, 2) . substr($t_card_no, -4) . '******' . substr($t_card_no, 2, 4);
-                            $t_sum[$t_trans_card_no] += $t_amt;
+                            if (!isset($t_sum[$t_trans_card_no])) {
+                                $t_sum[$t_trans_card_no] = $t_amt;
+                            } else {
+                                $t_sum[$t_trans_card_no] += $t_amt;
+                            }
                         }
                         break;
                     default:
@@ -73,13 +81,21 @@
                         } else {
                             $t_refund_sum += $t_amt;
                         }
-                        $t_sum[$t_key] += $t_amt;
+                        if (!isset($t_sum[$t_key])) {
+                            $t_sum[$t_key] = $t_amt;
+                        } else {
+                            $t_sum[$t_key] += $t_amt;
+                        }
                         break;
                     case 'PAY':
                         // 只檢查購票
                         if ($t_amt > 0) {
                             $t_pay_sum += $t_amt;
-                            $t_sum[$t_key] += $t_amt;
+                            if (!isset($t_sum[$t_key])) {
+                                $t_sum[$t_key] = $t_amt;
+                            } else {
+                                $t_sum[$t_key] += $t_amt;
+                            }
                         }
                         break;
                     default:
@@ -90,7 +106,9 @@
         return $t_sum;
     }
     
-    $chk_dir_path = '../file/railway_chk';
+    $chk_dir_path = 'file';
+    $diff_pay_total = 0; // 付款差異總額
+    $diff_refund_total = 0; // 退款差異總額
     
     // 台鐵交易
     $nec_trd = array();
@@ -133,6 +151,7 @@
         $comp_desc = '綠界';
     }
     
+
     foreach ($src_trd as $t_key => $t_val) {
         if (!isset($comp_trd[$t_key])) {
             $diff_count++;
@@ -165,5 +184,5 @@
     }
     disp('差異總金額:' . $diff_pay_total . '|' . $diff_refund_total . '; 筆數:' . $diff_count);
     
-    include('../tpl/footer.php');
+    include('tpl/footer.php');
 ?>

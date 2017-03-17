@@ -7,7 +7,7 @@
  */
 	define('CSV_DIR_PATH', './file');
 	
-	$csv_file_name = 'bin_table_161103_01.csv';
+	$csv_file_name = 'bin_table_161201_01.csv';
 	$csv_file_path = CSV_DIR_PATH . '/' . $csv_file_name;
 	$new_csv_file_name = 'new_bin_table_' . date('ymd') . '_01.csv';
 	$new_csv_file_path = CSV_DIR_PATH . '/' . $new_csv_file_name;
